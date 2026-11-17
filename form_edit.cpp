@@ -232,9 +232,8 @@ void FormEdit::on_btnOpen_clicked() {
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
             QMessageBox::critical(this, tr("G-code Editor: Open file error"), file.errorString());
         else {
-            QTextStream stream(&file);
-            stream.setCodec("Windows-1251");
-            par.gcodeText = stream.readAll();
+            QTextCodec* codec = QTextCodec::codecForName("Windows-1251");
+            par.gcodeText = codec->toUnicode(file.readAll());
             txtEditor->setPlainText(par.gcodeText);
             file.close();
             par.saveSettings();
@@ -258,10 +257,10 @@ void FormEdit::on_btnSave_clicked() {
         else {
             par.gcodeText = txtEditor->toPlainText();
 
-            QTextStream stream(&file);
-            stream.setCodec("Windows-1251");
-            stream << par.gcodeText;
-            stream.flush();
+            QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+            QByteArray data = codec->fromUnicode(par.gcodeText);
+
+            file.write(data);
             file.close();
         }
     }

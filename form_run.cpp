@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QMessageBox>
+#include <QRegularExpression>
 
 using namespace std;
 
@@ -685,7 +686,7 @@ void FormRun::on_btnHome_clicked() {
 }
 
 QString FormRun::addLineNum(QString txt) {
-    QStringList list = txt.split(QRegExp("(\\n|\\r\\n|\\n\\r)"));
+    QStringList list = txt.split(QRegularExpression(R"(\r\n|\n\r|\n|\r)"));
     QString res;
     int i = 0;
     for (auto it = list.begin(); it != list.end(); ++it, i++)
