@@ -1,5 +1,5 @@
 #include "segment_block.h"
-#include <cmath>
+#include <utility>
 
 using namespace std;
 
@@ -63,8 +63,8 @@ SegmentBlock::SegmentBlock(const SegmentBlock& other) :
 SegmentBlock::SegmentBlock(SegmentBlock&& other) :
     flags(other.flags),
     m_base(other.m_base),
-    m_name(move(other.m_name)),
-    m_entities(move(other.m_entities))
+    m_name(std::move(other.m_name)),
+    m_entities(std::move(other.m_entities))
 {
 }
 
@@ -88,10 +88,10 @@ SegmentBlock& SegmentBlock::operator=(SegmentBlock&& other) noexcept {
     if (this != &other) {
         flags = other.flags;
         m_base = other.m_base;
-        m_name = move(other.m_name);
+        m_name = std::move(other.m_name);
 
         clearEntities();
-        m_entities = move(other.m_entities);
+        m_entities = std::move(other.m_entities);
     }
     return *this;
 }

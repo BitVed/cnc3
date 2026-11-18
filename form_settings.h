@@ -66,7 +66,7 @@ class FormSettings : public QWidget
     static QGroupBox* groupLabelNum(QLabel* label, QSpinBox* num, QComboBox* combo);
     static QGroupBox* groupLabelCombo(QLabel* label, QComboBox* combo);
 
-    void onStateChangedMotor(int state);
+    void onСheckStateChanged(Qt::CheckState state);
     void onNumScaleChanged(double value);
 
 //    void initSettings();

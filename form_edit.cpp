@@ -6,7 +6,6 @@
 #include <QTextCodec>
 #include <QSplitter>
 #include <QList>
-#include <algorithm>
 
 using namespace std;
 

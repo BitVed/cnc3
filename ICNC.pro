@@ -18,7 +18,7 @@ unix: DEFINES += LINUX
 #}
 
 Release: DEFINES += QT_NO_DEBUG_OUTPUT
-unix: DEFINES += QT_NO_DEBUG_OUTPUT
+#unix: DEFINES += QT_NO_DEBUG_OUTPUT
 
 QT += core gui widgets
 QT += serialport xml

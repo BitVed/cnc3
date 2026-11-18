@@ -262,12 +262,12 @@ bool Cnc::writeFromFile(const string& fileName) {
     list<string> ss;
 
     string s = fileReadLine(fp);
-    size_t n = s.size() + 1;
+//    size_t n = s.size() + 1;
 
     while (!s.empty()) {
         ss.push_back(std::move(s));
         s = fileReadLine(fp);
-        n += s.size() + 1;
+//        n += s.size() + 1;
     }
 
     print_strings(m_msg, ss);

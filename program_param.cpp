@@ -427,7 +427,7 @@ bool ProgramParam::loadFeedbackParam(
     low_thld[1] = CncParam::low_thld[1] = loadDouble(settings, "lowThresholdLow", 0, thld_max, 0, OK);
     high_thld[1] = CncParam::high_thld[1] = loadDouble(settings, "highThresholdLow", 0, thld_max, thld_max, OK);
 
-    if (low_thld > high_thld) {
+    if (low_thld[0] > high_thld[0] || low_thld[1] > high_thld[1]) {
         low_thld[0] = CncParam::low_thld[0] = 0;
         low_thld[1] = CncParam::low_thld[1] = 0;
 

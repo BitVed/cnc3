@@ -454,16 +454,16 @@ void FormSettings::createSettingsWidget() {
         selectComboInputLevel(numInputLevel->value());
     });
 
-    connect(checkReverseMotorX, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
-    connect(checkReverseMotorY, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
-    connect(checkSwapMotorXY, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
+    connect(checkReverseMotorX, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkReverseMotorY, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkSwapMotorXY, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
 
 #ifndef STONE
-    connect(checkReverseMotorU, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
-    connect(checkReverseMotorV, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
-    connect(checkSwapMotorUV, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);    
-    connect(checkReverseEncX, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
-    connect(checkReverseEncY, &QCheckBox::stateChanged, this, &FormSettings::onStateChangedMotor);
+    connect(checkReverseMotorU, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkReverseMotorV, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkSwapMotorUV, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkReverseEncX, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
+    connect(checkReverseEncY, &QCheckBox::checkStateChanged, this, &FormSettings::onСheckStateChanged);
 #endif
 
 //    connect(numHighThld, QOverload<int>::of(&QSpinBox::valueChanged), this, [&](int value) {
@@ -516,7 +516,7 @@ void FormSettings::init() {
     checkReverseEncY->setCheckState(CncParam::reverseEncY ? Qt::Checked : Qt::Unchecked);
 #endif
 
-    onStateChangedMotor(0);
+    onСheckStateChanged(Qt::CheckState::Unchecked);
 
     for (QCheckBox* const o: checks)
         o->blockSignals(false);
@@ -591,7 +591,7 @@ void FormSettings::onNumScaleChanged(double) {
     fnumStep->setMinimum(step);
 }
 
-void FormSettings::onStateChangedMotor(int /*state*/) {
+void FormSettings::onСheckStateChanged(Qt::CheckState /*state*/) {
 #ifndef STONE
     ProgramParam::saveMotorDir(
         checkReverseMotorX->isChecked(), checkReverseMotorY->isChecked(), checkReverseMotorU->isChecked(), checkReverseMotorV->isChecked(),

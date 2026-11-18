@@ -65,27 +65,27 @@ bool ModeTableModel::setData(const QModelIndex &index, const QVariant &value, in
 
         switch (col) {
         case 0:
-            if (value.type() == QVariant::Type::Int)
+            if (value.typeId() == QMetaType::Int)
                 m_modes[row].roll_velocity = value.toInt();
 
             break;
         case 1:
-            if (value.type() == QVariant::Type::Int)
+            if (value.typeId() == QMetaType::Int)
                 m_modes[row].current_level = value.toInt();
 
             break;
         case 2:
-            if (value.type() == QVariant::Type::Int)
+            if (value.typeId() == QMetaType::Int)
                 m_modes[row].pulse_width = value.toInt();
 
             break;
         case 3:
-            if (value.type() == QVariant::Type::Int)
+            if (value.typeId() == QMetaType::Int)
                 m_modes[row].pulse_ratio = value.toInt();
 
             break;
         case 4:
-            if (value.type() == QVariant::Type::Bool)
+            if (value.typeId() == QMetaType::Bool)
                 m_modes[row].low_high_voltage = value.toBool();
 
             break;

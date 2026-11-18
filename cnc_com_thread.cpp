@@ -4,12 +4,8 @@
 #include <QDebug>
 #include <QCoreApplication>
 
-#include <iostream>
-#include <memory>
-#include <iostream>
 #include <string>
 #include <cstdio>
-#include <stdexcept>
 //#include <regex>
 
 #include "main.h"
@@ -172,7 +168,7 @@ int CncComThread::readPacket(ComPacket &rxd, int timeout_ms) {
                 qDebug("Serial port error %d: %s", m_port->error(), m_port->errorString().toStdString().c_str());
 
 
-            qDebug("Rx %d bytes\n", m_responseData.size());
+            qDebug("Rx %lld bytes\n", static_cast<long long>(m_responseData.size()));
         } else {
             int size_reg;
 
@@ -181,7 +177,7 @@ int CncComThread::readPacket(ComPacket &rxd, int timeout_ms) {
                 m_responseData += m_port->readAll();
 
                 if (size_reg != m_responseData.size())
-                    qDebug("Rem+Rx %d bytes\n", m_responseData.size());
+                    qDebug("Rem+Rx %lld bytes\n", static_cast<long long>(m_responseData.size()));
                 else
                     break; // no more data
             } while (1);

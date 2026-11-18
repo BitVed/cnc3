@@ -1,4 +1,5 @@
 #include "contour_pass.h"
+#include <utility>
 #include <QDebug>
 
 using namespace std;
@@ -89,7 +90,7 @@ deque<ContourPair>& ContourPass::generate() {
                         clone.remove_from(bot_idx, top_idx);
                         if (dir)
                             clone.reverse();
-                        pass.push_back(move(clone));
+                        pass.push_back(std::move(clone));
                     }
 
                     // todo: don't make tab for even passes
@@ -103,7 +104,7 @@ deque<ContourPair>& ContourPass::generate() {
                         clone.remove_before(bot_idx, top_idx);
                         if (dir)
                             clone.reverse();
-                        tab.push_back(move(clone));
+                        tab.push_back(std::move(clone));
                     }
                 }
 
@@ -120,8 +121,8 @@ deque<ContourPair>& ContourPass::generate() {
                     ContourPair clone(ctr);
                     clone.reverse();
 
-                    overcut.push_back(move(ctr));
-                    overcut.push_back(move(clone));
+                    overcut.push_back(std::move(ctr));
+                    overcut.push_back(std::move(clone));
                 }
 
                 if (aux_pair.hasOut()) {
@@ -135,7 +136,7 @@ deque<ContourPair>& ContourPass::generate() {
                     // todo: it can be problem if segment were removed
                     ctr.remove_from(aux_pair.getOutNum() + 1, aux_pair.getOutNum() + 1);
 
-                    out.push_back(move(ctr));
+                    out.push_back(std::move(ctr));
                 }
 
                 printDebug(pass, tab, overcut, out);

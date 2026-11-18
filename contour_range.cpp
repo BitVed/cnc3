@@ -45,7 +45,14 @@ ContourRange::ContourRange(const ContourRange& other) :
 }
 
 ContourRange &ContourRange::operator=(const ContourRange &other) {
-    memcpy(this, &other, sizeof(ContourRange));
+    if (this != &other) {
+        valid = other.valid;
+        x_min = other.x_min;
+        x_max = other.x_max;
+        y_min = other.y_min;
+        y_max = other.y_max;
+    }
+
     return *this;
 }
 

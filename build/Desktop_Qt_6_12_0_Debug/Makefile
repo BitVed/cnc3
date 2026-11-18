@@ -14,7 +14,7 @@ EQ            = =
 
 CC            = clang
 CXX           = clang++
-DEFINES       = -DQWT_DLL -DLINUX -DQT_NO_DEBUG_OUTPUT -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_SVG_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_XML_LIB -DQT_CORE5COMPAT_LIB -DQT_CORE_LIB
+DEFINES       = -DQWT_DLL -DLINUX -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_SVG_LIB -DQT_OPENGL_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SERIALPORT_LIB -DQT_XML_LIB -DQT_CORE5COMPAT_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++17 -Wall -Wextra -fPIC -D_REENTRANT $(DEFINES)
 INCPATH       = -I../../../cnc3 -I. -I/usr/local/qwt-6.3.0/include -I../../../../Qt/6.12.0/gcc_64/include -I../../../../Qt/6.12.0/gcc_64/include/QtSvg -I../../../../Qt/6.12.0/gcc_64/include/QtOpenGL -I../../../../Qt/6.12.0/gcc_64/include/QtWidgets -I../../../../Qt/6.12.0/gcc_64/include/QtGui -I../../../../Qt/6.12.0/gcc_64/include/QtSerialPort -I../../../../Qt/6.12.0/gcc_64/include/QtXml -I../../../../Qt/6.12.0/gcc_64/include/QtCore5Compat -I../../../../Qt/6.12.0/gcc_64/include/QtCore -I. -I. -I../../../../Qt/6.12.0/gcc_64/mkspecs/linux-clang
@@ -18217,7 +18217,8 @@ main.o: ../../main.cpp ../../my_app.h \
 		../../../../Qt/6.12.0/gcc_64/include/QtWidgets/qdialog.h \
 		../../../../Qt/6.12.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../../Qt/6.12.0/gcc_64/include/QtWidgets/QStyleFactory \
-		../../../../Qt/6.12.0/gcc_64/include/QtWidgets/qstylefactory.h
+		../../../../Qt/6.12.0/gcc_64/include/QtWidgets/qstylefactory.h \
+		../../../../Qt/6.12.0/gcc_64/include/QtCore/QStringConverter
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
 
 mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \

@@ -1,4 +1,5 @@
 ﻿#include "contour_list.h"
+#include <utility>
 
 using namespace std;
 
@@ -20,10 +21,10 @@ ContourList::ContourList(const deque<ContourPair>& contours) :
 {
 }
 ContourList::ContourList(ContourList&& other) {
-    *this = move(other);
+    *this = std::move(other);
 }
 ContourList::ContourList(std::deque<ContourPair>&& contours) :
-    m_contours(move(contours)),
+    m_contours(std::move(contours)),
     m_thickness(0), m_cur_ctr(-1), m_cur_seg(-1), m_xyValid(false), m_uvValid(false), m_botValid(false), m_botLength(-1),
     m_ctr(0), m_sel(CONTOUR_SELECT::NONE),
     m_error("")
@@ -88,7 +89,7 @@ ContourList& ContourList::operator=(const ContourList& other) {
 ContourList &ContourList::operator=(ContourList&& other) noexcept {
     if (this != &other) {
         clear();
-        m_contours = move(other.m_contours);
+        m_contours = std::move(other.m_contours);
         m_thickness = other.m_thickness;
 
         m_cur_ctr = other.m_cur_ctr;
@@ -106,10 +107,10 @@ ContourList &ContourList::operator=(ContourList&& other) noexcept {
         m_botLength = -1;
 
         m_ctr = other.m_ctr;
-        m_seg_map = move(other.m_seg_map);
+        m_seg_map = std::move(other.m_seg_map);
         m_sel = other.m_sel;
 
-        m_error = move(other.m_error);
+        m_error = std::move(other.m_error);
     }
     return *this;
 }

@@ -8,6 +8,9 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 
+#include <QStringConverter>
+#include <QDebug>
+
 #include "program_param.h"
 
 //#include <QDBusConnection>
@@ -21,7 +24,10 @@ int main(int argc, char *argv[]) {
 
         switch (ProgramParam::lang) {
         case InterfaceLanguage::RUSSIAN:
-            translator.load("icnc_ru", ".");
+            if (!translator.load("icnc_ru", ".")) {
+                qWarning() << "Failed to load Russian translation: icnc_ru.qm";
+            }
+
             break;
         default: break;
         }
@@ -42,6 +48,10 @@ int main(int argc, char *argv[]) {
     qApp->setStyle(QStyleFactory::create("Fusion"));
 //    qApp->setStyle(QStyleFactory::create("Windows"));
 //    qApp->setStyle(QStyleFactory::create("windowsvista"));
+
+    const auto encoding = QStringConverter::encodingForName("windows-1251");
+
+    qDebug() << "Windows-1251 supported:" << encoding.has_value();
 
 #ifdef DARK_GUI_THEME
     QPalette darkPalette;

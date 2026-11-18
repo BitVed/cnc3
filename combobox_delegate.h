@@ -1,5 +1,5 @@
 #ifndef COMBO_DELEGATE_H
-#define SOMBO_DELEGATE_H
+#define COMBO_DELEGATE_H
 
 #include <QStyledItemDelegate>
 
