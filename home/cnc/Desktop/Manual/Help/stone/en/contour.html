@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Contour Editor</title>
+    <style>
+			h1 {text-align: center;}
+			h2 {text-align: center;}
+			font.button {color:MediumSeaGreen;}
+      font.panel_link {
+        font-style: italic;
+      }
+		</style>
+  </head>
+  <body>
+    <table align="center" width="800" bgcolor="lightyellow">
+      <tbody>
+        <tr>
+          <td><p><a href="home.html#top">Back</a></p>
+            <h1 id="top">Contour Editor</h1>
+            <h2>Buttons</h2>
+            <ul>
+              <li>
+                <h3 id="home"><a href="home.html#top"><font class="button">Home</font></a><font class="panel_link"> - Go to the Home panel</font></h3>
+              </li>
+              <li>
+                <h3><font class="button">Load DXF</font> - Load DXF file</h3>
+                <p>Load a cut contour in DXF format. Only line and arc segments are supported in DXF.</p>
+              </li>
+              <li>
+                <h3><font class="button"><a href="passes.html#top">Adjust</a></font><font class="panel_link"> - Adjust contour parameters and cutting modes</font></h3>
+                <p>Adjustment of wire offsets and cutting modes.</p>
+              </li>
+              <li>
+                <h3><font class="button">Generate</font> - Generate G-code</h3>
+                <p>Generate a G-code program based on the contour and
+                  contour adjustments. After successful generation, there is
+                  an automatic transition to the G-code editor.</p>
+              </li>
+              <li>
+                <h3><font class="button">Entry Line</font> - Add a new cutline before the first segment</h3>
+                <p>Add a new cutline before the first segment. The cutline
+                  is added to the first point of the contour marked with a
+                  red square on the plot.</p>
+              </li>
+              <li>
+                <h3><font class="button">Delete</font> - Delete the selected contour from the project</h3>
+              </li>
+              <li>
+                <h3><font class="button">Clear</font> - Delete all contours from the project</h3>
+              </li>
+              <li>
+                <h3><font class="button">Set First</font> - Set selected segment the first in the contour</h3>
+              </li>
+              <li>
+                <h3><font class="button">Change Direction</font> - Change contour direction</h3>
+                <p>Reverse the order of the segments in the contour.
+                  This operation changes the cut direction.</p>
+              </li>
+              <li>
+                <h3>Menu <font class="button">Edit</font></h3>
+                <ul>
+                  <li>
+                    <h4><font class="button">Use as Entry Line</font></h4>
+                    <p>Use the selected contour segment as an entry line.</p>
+                  </li>
+                  <li>
+                    <h4><font class="button">Rotate</font></h4>
+                    <p>Rotate the selected contour by a given angle.</p>
+                  </li>
+                  <li>
+                    <h4><font class="button">Flip Left-Right</font></h4>
+                    <p>Flip the selected contour from left to right.</p>
+                  </li>
+                  <li>
+                    <h4><font class="button">Flip Up-Down</font></h4>
+                    <p>Flip the selected contour from up to down.</p>
+                  </li>
+                  <li>
+                    <h4><font class="button">Resize</font></h4>
+                    <p>Resize the selected contour.</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p><br><a href="#top">Up</a></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

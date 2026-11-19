@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Contour Editor</title>
+		<style>
+			h1 {text-align: center;}
+			h2 {text-align: center;}
+			code {
+				color:Tomato;
+				font-weight:bold;
+			}
+			font.button {color:Green;}
+		</style>
+	</head>
+	<body>
+		<table width="800" bgcolor="lightyellow" align="center">
+			<tr>
+				<td>
+					<a href="index.html">Домой</a><br>
+					<h1 id="top">Редактор контура реза</h1>
+					<h2>Кнопки</h2>
+					<h3 id="home"><font class="button">Главная</font> - переход в главную панель</h3>
+					<h3><font class="button">Загр. низ</font> - загрузить нижний контур</h3>
+					<p>Загрузить нижний контур детали в формате DXF. Поддерживаются только контуры состоящие из линий и дуг. Для прямого реза требуется загрузка только нижнего контура.</p>
+					<a href="passes.html"><h3><font class="button">Регул.</font></a> - регулировка параметров реза</h3>
+					<p>Настройка проходов и режимов работы станка во время реза.</p>
+					<h3><font class="button">Генер.</font> - генерация программы ЧПУ</h3>
+					<p>Генерация программы реза в формате G-код на основание контура и заданных режимов обработки. После генерации программы ЧПУ происходит автоматический переход в рабочую панель.</p>
+					<h3><font class="button">Новая линия захода</font> - добавление в проект линии захода</h3>
+					<h3><font class="button">Удалить</font> - удалить выбранный контур из проекта</h3>
+					<h3><font class="button">Очистить</font> - удалить все контуры из проекта</h3>
+					<h3><font class="button">Первый</font> - сделать выделенный сигмент первым в контуре</h3>
+					<h3><font class="button">Изменить направление</font></h3>
+					<p>Изменить порядок следования сигментов в контуре на обратный. Нажатие меняет направление обхода контура.</p>
+					<h3>Меню <font class="button">Редактировать</font></h3>
+					<ul>
+						<li><h4><font class="button">Использовать как линию захода</font></h4></li>
+						<p>Использовать выбранный сигмент контура как линию захода.</p>
+					</ul>
+					<br>
+					<p><a href="#top">Вверх</a></p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

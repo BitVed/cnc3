@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Pult</title>
+    <style>
+			h1 {text-align: center;}
+			h2 {text-align: center;}
+			code {
+				color:Tomato;
+				font-weight:bold;
+			}
+			font.button {color:MediumSeaGreen;}
+      font.panel_link {
+        font-style: italic;
+      }
+		</style>
+  </head>
+  <body>
+    <table align="center" width="800" bgcolor="lightyellow">
+      <tbody>
+        <tr>
+          <td><p><a href="home.html#top">Back</a></p>
+            <h1 id="top">Pult</h1>
+            <h2>Buttons</h2>
+            <ul>
+              <li>
+                <h3><a href="home.html#top"><font class="button">Home</font></a><font class="panel_link"> - Go to the Home panel</font></h3>
+                <p>The button is disabled during running.</p>
+              </li>
+              <li>
+                <h3><font class="button">Break</font> - Wire break control turn On/Off</h3>
+              </li>
+              <li>
+                <h3><font class="button">Pump</font> - Cutting fluid turn On/Off</h3>
+              </li>
+              <li>
+                <h3><font class="button">Drum</font> - Wire drum turn On/Off</h3>
+              </li>
+              <li>
+                <h3><font class="button">Forward</font></h3>
+                <p>Move forward a distance dX, dY with a given speed. It's equal to a G-code command:<br>
+                  <code>G91 G1 X{dx} Y{dy} F{speed}</code>
+                </p>
+              </li>
+			  <li>
+                <h3><font class="button">Backward</font></h3>
+                <p>Move backward a distance -dX, -dY with a given speed. It's equal to a G-code command:<br>
+                  <code>G91 G1 X{-dx} Y{-dy} F{speed}</code>
+                </p>
+              </li>
+              <li>
+                <h3><font class="button">Set</font></h3>
+                <p>Set the CNC position counters to X, Y coordinates. It's equal to G-code command:<br>
+                  <code>G92 X{x} Y{y}</code>
+                </p>
+              </li>
+              <li>
+                <h3><font class="button">Cancel</font> - Cancel moving</h3>
+              </li>
+              <li>
+                <h3><font class="button">Hold</font> - Motor holding turn On/Off</h3>
+              </li>
+            </ul>
+            <h2>Controls</h2>
+            <ul>
+              <li>
+                <h3><font class="button">Drum</font> - Drum velocity</h3>
+                <p>Value range [1, 7].</p>
+              </li>
+            </ul>
+            <h2>State panel</h2>
+            <h3>The state panel displays:</h3>
+            <ul>
+              <li>Current coordinates X, Y in millimeters;</li>
+              <li>Elapsed time from the start in HH:MM:SS format;</li>
+              <li>Estimated remaining time in HH:MM:SS format.</li>
+              <li>Flags:
+                <ul>
+                  <li><b>PWR</b> - no power supply 220V;</li>
+                  <li><b>WB</b> - a wire break signal;</li>
+                  <li><b>ALM</b> - an alarm signal from one of the limit switches;</li>
+                  <li><b>REV</b> - the limit switch of the backward motion of the drum is active;</li>
+                  <li><b>FWD</b> - the limit switch of the forward motion of the drum is active.</li>
+                </ul>
+              </li>
+            </ul>
+            <p><br><a href="#top">Up</a></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

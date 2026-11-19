@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <contours>
+        <cutline_contour>
+            <bot>
+                <line>
+                    <A>
+                        <X type="double">-10</X>
+                        <Y type="double">0</Y>
+                    </A>
+                    <B>
+                        <X type="double">0</X>
+                        <Y type="double">0</Y>
+                    </B>
+                </line>
+            </bot>
+            <top/>
+        </cutline_contour>
+        <main_contour>
+            <bot>
+                <line>
+                    <A>
+                        <X type="double">0</X>
+                        <Y type="double">0</Y>
+                    </A>
+                    <B>
+                        <X type="double">0</X>
+                        <Y type="double">-20</Y>
+                    </B>
+                </line>
+                <line>
+                    <A>
+                        <X type="double">-8.8817842e-16</X>
+                        <Y type="double">-20</Y>
+                    </A>
+                    <B>
+                        <X type="double">34.6410162</X>
+                        <Y type="double">-8.76229997e-16</Y>
+                    </B>
+                </line>
+                <line>
+                    <A>
+                        <X type="double">34.6410162</X>
+                        <Y type="double">-8.76229997e-16</Y>
+                    </A>
+                    <B>
+                        <X type="double">0</X>
+                        <Y type="double">20</Y>
+                    </B>
+                </line>
+                <line>
+                    <A>
+                        <X type="double">0</X>
+                        <Y type="double">20</Y>
+                    </A>
+                    <B>
+                        <X type="double">0</X>
+                        <Y type="double">0</Y>
+                    </B>
+                </line>
+            </bot>
+            <top/>
+        </main_contour>
+        <cutline_contour>
+            <bot>
+                <line>
+                    <A>
+                        <X type="double">0</X>
+                        <Y type="double">0</Y>
+                    </A>
+                    <B>
+                        <X type="double">-10</X>
+                        <Y type="double">0</Y>
+                    </B>
+                </line>
+            </bot>
+            <top/>
+        </cutline_contour>
+    </contours>
+</project>

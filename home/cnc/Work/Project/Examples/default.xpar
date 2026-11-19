@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<param>
+    <cut>
+        <times type="unsigned">1</times>
+        <cutline_mode_id type="unsigned">0</cutline_mode_id>
+        <offset_side type="OFFSET_SIDE">RIGHT</offset_side>
+        <aux_offset_side type="OFFSET_SIDE">LEFT</aux_offset_side>
+        <offset_ena type="boolean">true</offset_ena>
+        <aux_offset_ena type="boolean">false</aux_offset_ena>
+        <speed_ena type="boolean">true</speed_ena>
+        <seg_pause type="unsigned">0</seg_pause>
+        <tab_seg type="unsigned">0</tab_seg>
+        <aux_offset type="double">0</aux_offset>
+        <speed type="double">1.8</speed>
+        <tab_multi_pass type="boolean">true</tab_multi_pass>
+        <tab type="double">0</tab>
+        <tab_offset>
+            <value type="double">0</value>
+            <mode_id type="unsigned">0</mode_id>
+        </tab_offset>
+        <tab_pause type="boolean">false</tab_pause>
+        <overlap type="double">0</overlap>
+        <pump_delay type="unsigned">60</pump_delay>
+        <pump_pause type="boolean">false</pump_pause>
+        <offsets>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+            <offset>
+                <value type="double">0.2</value>
+                <mode_id type="unsigned">0</mode_id>
+            </offset>
+        </offsets>
+    </cut>
+</param>

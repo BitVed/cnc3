@@ -304,7 +304,6 @@ DIST          = ../../icnc_ru.qm \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_harfbuzz_private.pri \
@@ -334,13 +333,6 @@ DIST          = ../../icnc_ru.qm \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_linguist.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediatestlibprivate_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
@@ -406,8 +398,6 @@ DIST          = ../../icnc_ru.qm \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dparticles_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dxr.pri \
@@ -476,8 +466,6 @@ DIST          = ../../icnc_ru.qm \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools_private.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio.pri \
-		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
 		/Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_svg.pri \
@@ -717,7 +705,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_harfbuzz_private.pri \
@@ -747,13 +734,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_linguist.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediatestlibprivate_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
@@ -819,8 +799,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dparticles_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dxr.pri \
@@ -889,8 +867,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools_private.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio.pri \
-		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
 		../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_svg.pri \
@@ -979,7 +955,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_ffmpegmediapluginimpl_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_gui_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_harfbuzz_private.pri:
@@ -1009,13 +984,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_labswavefrontmesh_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_linguist.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediaquick_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediatestlibprivate_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_network_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_opengl.pri:
@@ -1081,8 +1049,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dparticles_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dspatialaudio_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_quick3dxr.pri:
@@ -1151,8 +1117,6 @@ Makefile: ../../ICNC.pro ../../../../Qt/6.12.0/gcc_64/mkspecs/features/spec_pre.
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_shadertools_private.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio.pri:
-../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_spatialaudio_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_sql_private.pri:
 ../../../../Qt/6.12.0/gcc_64/mkspecs/modules/qt_lib_svg.pri:

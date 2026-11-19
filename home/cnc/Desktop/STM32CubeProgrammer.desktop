@@ -1,0 +1,24 @@
+[Desktop Entry]
+Categories=
+Comment=STM32CubeProgrammer-Cube 2.5.0
+Comment[en]=STM32CubeProgrammer-Cube 2.5.0
+Encoding=UTF-8
+Exec=/home/cnc/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin/STM32CubeProgrammer
+GenericName=
+GenericName[en]=
+Icon=/home/cnc/STMicroelectronics/STM32Cube/STM32CubeProgrammer/util/Programmer.ico
+MimeType=
+Name=STM32CubeProgrammer
+Name[en]=STM32CubeProgrammer
+Path=/home/cnc/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin
+ServiceTypes=
+SwallowExec=
+SwallowTitle=
+Terminal=
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=root
+
+# created by com.izforge.izpack.util.os.Unix_Shortcut $Revision$
+# $Id$

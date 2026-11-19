@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Run</title>
+		<style>
+			h1 {text-align: center;}
+			h2 {text-align: center;}
+			code {
+				color:Tomato;
+				font-weight:bold;
+			}
+			font.button {color:MediumSeaGreen;}
+		</style>
+	</head>
+	<body>
+		<table width="800" bgcolor="lightyellow" align="center">
+			<tr>
+				<td>
+					<a href="home.html#top">Назад</a><br>
+					<h1 id="top">Пульт</h1>
+					<h2>Кнопки</h2>
+					<ul>
+						<li>
+							<h3><font class="button">Главная</font> - переход на главную панель</h3>
+							<p>Заблокирована во время реза.</p>
+						</li><li>
+							<h3><font class="button">Обрыв</font> - включение/отключение контроля обрыва проволоки</h3>
+						</li><li>
+							<h3><font class="button">Насос</font> - включение/отключение насоса СОЖ</h3>
+						</li><li>
+							<h3><font class="button">Барабан</font> - включение/отключение вращения барабана</h3>
+						</li><li>
+							<h3><font class="button">Вперед</font></h3>
+							<p>Комманда перемещения на расстояние dX, dY с заданной скоростью. Аналогично комманде G-код<br>
+							<code>G91 G1 X{dx} Y{dy} F{speed}</code>.</p>
+						</li><li>
+							<h3><font class="button">Назад</font></h3>
+							<p>Комманда перемещения на расстояние dX, dY с заданной скоростью в обратном направление. Аналогично комманде G-код<br>
+							<code>G91 G1 X{-dx} Y{-dy} F{speed}</code>.</p>
+						</li><li>
+							<h3><font class="button">Установить</font></h3>
+							<p>Установить счетчики положения в ЧПУ в значения X, Y. Аналогично комманде G-код<br>
+							<code>G92 X{x} Y{y}</code>.</p>
+						</li><li>
+							<h3><font class="button">Отмена</font> - отменить комманды перемещения</h3>
+						</li><li>
+							<h3><font class="button">Держать</font> - включение/отключение удержания шаговых двигателей</h3>
+						</li>
+					</ul>
+					<h2>Регулятор</h2>
+						<ul>
+							<li>
+								<h3><font class="button">Барабан</font> - скорость барабана</h3>
+								<p>Диапазон значений: целые числа от 1 до 7.</p>
+							</li>
+						</ul>
+					<h2>Панель состояния</h2>
+					На панеле отображаются:<br>
+					<ul>
+					  <li>текущие координаты реза X, Y в миллиметрах и в шагах двигателя;</li>
+					  <li>Флаги:
+						<ul>
+							<li><b>PWR</b> - на плату ЧПУ не приходит питание 220 В;</li>
+							<li><b>WB</b> - обрыв проволоки;</li>
+							<li><b>ALM</b> - срабатывание одного из концевых выключателей;</li>
+							<li><b>REV</b> - сработал концевик обратного хода барабана;</li>
+							<li><b>FWD</b> - сработал концевик прямого хода барабана.</li>
+						</ul>
+					  </li>
+					</ul>
+					<br>
+					<a href="#top">Вверх</a><br>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
