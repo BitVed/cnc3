@@ -1,0 +1,105 @@
+# CNC3 — Qt 6 / Qwt / qmake
+# Ubuntu / Windows (MinGW)
+
+# Qt Creator local settings
+*.pro.user
+*.pro.user.*
+*.user
+*.user.*
+*.autosave
+*.pro.autosave
+.qtc_clangd/
+.qtcreator/
+
+# Build directories
+/build/
+/build-*/
+cmake-build-*/
+/debug/
+/release/
+/Debug/
+/Release/
+
+# qmake generated files
+Makefile
+Makefile.*
+.qmake.stash
+.qmake.cache
+.qmake.super
+*.prl
+
+# Generated Qt source files
+moc_*.cpp
+moc_*.h
+ui_*.h
+qrc_*.cpp
+qrc_*.h
+moc_predefs.h
+
+# Compiler/linker output
+*.o
+*.obj
+*.d
+*.a
+*.la
+*.lo
+*.lai
+*.so
+*.so.*
+*.dll
+*.lib
+*.exp
+*.exe
+*.out
+*.app/
+*.debug
+*.pdb
+*.ilk
+*.idb
+*.dSYM/
+
+# CNC3 Linux executable generated in project root
+/ICNC
+
+# Compiled translations (keep *.ts sources)
+*.qm
+
+# CMake generated files (if used later)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Testing/
+
+# Profiling and coverage
+*.gcda
+*.gcno
+*.gcov
+*.profraw
+*.profdata
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+*.swp
+*.swo
+*~
+*.stackdump
+
+# IDE / OS files
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Qt cache
+*.qmlc
+*.jsc
+/.qt/
+
+# CNC3 Help directory: keep program help in Git
+!/Help/
+!/Help/**
