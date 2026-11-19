@@ -61,9 +61,6 @@ moc_predefs.h
 # CNC3 Linux executable generated in project root
 /ICNC
 
-# Compiled translations (keep *.ts sources)
-*.qm
-
 # CMake generated files (if used later)
 CMakeFiles/
 CMakeCache.txt
@@ -99,7 +96,3 @@ Desktop.ini
 *.qmlc
 *.jsc
 /.qt/
-
-# CNC3 Help directory: keep program help in Git
-!/Help/
-!/Help/**
