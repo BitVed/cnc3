@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QProcess>
 #include <QMessageBox>
+#include <QScrollArea>
 
 #include "form_home.h"
 #include "aux_items.h"
@@ -84,7 +85,16 @@ FormHome::FormHome(ProgramParam& par, QWidget *parent) : QWidget(parent), par(pa
     stackedWidget->setCurrentWidget(widgetWelcome);
 
     hboxApps->addWidget(treeApps);
-    hboxApps->addWidget(stackedWidget);
+//    hboxApps->addWidget(stackedWidget);
+
+    auto *pagesScroll = new QScrollArea;
+    pagesScroll->setWidgetResizable(true);
+    pagesScroll->setFrameShape(QFrame::NoFrame);
+    pagesScroll->setWidget(stackedWidget);
+
+    hboxApps->addWidget(pagesScroll, 1);
+
+
     hboxApps->setStretch(0, 2);
     hboxApps->setStretch(1, 12);
 

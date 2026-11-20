@@ -773,7 +773,7 @@ void FormRun::on_btnStart_clicked() {
     switch (par.appState.state()) {
     case AppState::STATES::ST_NONE:
         _init();
-        [[clang::fallthrough]];
+        [[fallthrough]];
 
     case AppState::STATES::ST_IDLE:
         try {

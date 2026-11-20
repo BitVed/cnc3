@@ -26,6 +26,7 @@ public:
     SegmentArc(const fpoint_t& A, const fpoint_t& B, const fpoint_t& C, bool ccw);
     SegmentArc(const fpoint_t& A, const fpoint_t& B, double R, bool ccw);
     SegmentArc(const SegmentArc& other);
+    SegmentArc& operator=(const SegmentArc& other) = default;
     ~SegmentArc() override;
     SegmentEntity* clone() const override;
 

@@ -77,7 +77,7 @@ public:
 
     virtual SegmentEntity* clone() const = 0; // parameters are lost
 
-    virtual SegmentEntity& operator=(const SegmentEntity& other);
+    SegmentEntity& operator=(const SegmentEntity& other);
 
     virtual bool operator==(const SegmentEntity& /*other*/) const { return false; }
     virtual bool operator!=(const SegmentEntity& /*other*/) const { return false; }

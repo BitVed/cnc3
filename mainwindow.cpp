@@ -138,7 +138,7 @@ MainWindow::MainWindow(QWidget *parent) :
     });
 
     connect(m_formHome, &FormHome::programMinimize, this, [&]() {
-        setWindowState(Qt::WindowMinimized);
+        setWindowState(windowState() | Qt::WindowMinimized);
     });
 
     connect(m_formContour, &FormContour::fileNameChanged, this, &MainWindow::onFileNameChanged);
@@ -420,14 +420,36 @@ void MainWindow::onBackHelpClicked() {
     }
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *event) {
-    if (event && event->key() == Qt::Key::Key_F11) {
-        setWindowState(isFullScreen() ? Qt::WindowNoState : Qt::WindowFullScreen);
+// void MainWindow::keyPressEvent(QKeyEvent *event) {
+//     if (event && event->key() == Qt::Key::Key_F11) {
+//         setWindowState(isFullScreen() ? Qt::WindowNoState : Qt::WindowFullScreen);
+//     }
+// }
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() != Qt::Key_F11) {
+        QMainWindow::keyPressEvent(event);
+        return;
     }
+
+    setWindowState(isFullScreen() ? Qt::WindowNoState : Qt::WindowFullScreen);
+
+    QTimer::singleShot(500, this, [this]() {
+        if (windowState() == Qt::WindowNoState) {
+            const QRect area = screen()->availableGeometry();
+            const QRect frame = frameGeometry();
+
+            if (frame.left() < area.left() || frame.top() < area.top()) {
+                move(qMax(frame.left(), area.left()),
+                     qMax(frame.top(), area.top()));
+            }
+        }
+    });
 }
 
 void MainWindow::showEvent(QShowEvent *event) {
-    setWindowState(Qt::WindowFullScreen);
+//    setWindowState(Qt::WindowFullScreen);
 
     if (cnt++ == 0)
         connectCnc();

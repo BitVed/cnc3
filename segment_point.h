@@ -17,6 +17,7 @@ public:
     SegmentPoint(const fpoint_t& pt, bool additional = false);
     SegmentPoint(double x, double y, bool additional = false);
     SegmentPoint(const SegmentPoint& other);
+    SegmentPoint& operator=(const SegmentPoint& other) = default;
     ~SegmentPoint() override;
 
     SegmentEntity* clone() const override;
