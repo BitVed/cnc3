@@ -21,6 +21,9 @@ Release/
 x64/
 x86/
 
+build/
+build-*/
+
 /icnc
 /ICNC
 
