@@ -12,13 +12,17 @@
 .qtcreator/
 
 # Build directories
-/build/
-/build-*/
+build-*/
 cmake-build-*/
-/debug/
-/release/
-/Debug/
-/Release/
+debug/
+release/
+Debug/
+Release/
+x64/
+x86/
+
+/icnc
+/ICNC
 
 # qmake generated files
 Makefile
