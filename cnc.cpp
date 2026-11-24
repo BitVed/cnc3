@@ -154,7 +154,12 @@ vector<uint8_t> Cnc::readProgArray(size_t len) {
     vector<uint8_t> bytes;
 
     qDebug("Read Program Array\n");
-    m_com.read(ADDR::PA, len, bytes);
+
+    if (!m_com.read(ADDR::PA, len, bytes)) {
+        qDebug("Read program array error: %s", m_com.lastError().c_str());
+        return {};
+    }
+
     qDebug("read %d bytes\n", int(bytes.size()));
 
     return bytes;
@@ -185,8 +190,10 @@ vector<uint8_t> Cnc::readProgArrayBurst(size_t len) {
 
     bool OK = m_com.readBurst(ADDR::PA, len, bytes); // one attempt, try again manually
 
-    if (!OK)
+    if (!OK) {
         qDebug("Read burst error: %s\n", m_com.lastError().c_str());
+        return {};
+    }
 
     qDebug("cnc::readProgArrayBurst>>Read %d bytes\n", int(bytes.size()));
     return bytes;
