@@ -166,7 +166,7 @@ namespace auxItems {
 
      // Read a number from the given byte possition
      uint64_t BitConverter::toUInt48(const vector<uint8_t>& v, size_t pos) {
-         uint64_t res;
+         uint64_t res = 0;
          const size_t size = sizeof(uint32_t) + sizeof(uint16_t);
 
          if (pos + size <= v.size()) {
