@@ -183,21 +183,37 @@ int CncComThread::readPacket(ComPacket &rxd, int timeout_ms) {
             } while (1);
         }
 
-        for (QByteArray::const_iterator it = m_responseData.cbegin(); it != m_responseData.cend() && !rxd.complete(); ++it)
-            rxd.append(*it);            
+        // for (QByteArray::const_iterator it = m_responseData.cbegin(); it != m_responseData.cend() && !rxd.complete(); ++it)
+        //     rxd.append(*it);
+
+        // if (rxd.complete()) {
+        //     size_t rem = m_responseData.size() - rxd.rawSize();
+
+        //     if (rem) {
+        //         qDebug("Read remains %d bytes\n", (int)rem);
+        //         m_responseData = m_responseData.right(rem);
+        //     } else
+        //         m_responseData.clear();
+
+        //     break; // loop's quit is here
+        // } else
+        //     m_responseData.clear(); // all copied, read more
+
+        qsizetype consumed = 0;
+
+        while (consumed < m_responseData.size() && !rxd.complete()) {
+            rxd.append(static_cast<uint8_t>(m_responseData.at(consumed)));
+            ++consumed;
+        }
+
+        m_responseData.remove(0, consumed);
 
         if (rxd.complete()) {
-            size_t rem = m_responseData.size() - rxd.rawSize();
-
-            if (rem) {
-                qDebug("Read remains %d bytes\n", (int)rem);
-                m_responseData = m_responseData.right(rem);
-            } else
-                m_responseData.clear();
-
-            break; // loop's quit is here
-        } else
-            m_responseData.clear(); // all copied, read more
+            if (!m_responseData.isEmpty()) {
+                qDebug("Read remains %lld bytes\n", static_cast<long long>(m_responseData.size()));
+            }
+            break;
+        }
     } while (1);
 
 #ifdef RX_PRINT
