@@ -988,11 +988,19 @@ bool CncComThread::readBurst(uint32_t addr, size_t len, vector<uint8_t>& data) {
     }
 
     while (rem > 0) {
-        if ( readBurstPacket(m_rxpack) ) {
+      if (readBurstPacket(m_rxpack)) {
+            const size_t packetSize = m_rxpack.size();
+
+            if (packetSize == 0 || packetSize > rem) {
+                m_lastError = "Read burst packet length error";
+                data.clear();
+                return false;
+            }
+
             push_back_range(data, m_rxpack);
 
-    //        addr += packet.size();
-            rem -= m_rxpack.size();
+//          addr += packet.size();
+            rem -= packetSize;
 
             int pct = static_cast<int>(round((len - rem) * 100 / len));
 
