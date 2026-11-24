@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QObject>
 #include <QString>
+#include <memory>
 
 using namespace std;
 using namespace auxItems;
@@ -258,9 +259,9 @@ string textReadLine(const string& text,  string::const_iterator& it) {
 }
 
 bool Cnc::writeFromFile(const string& fileName) {
-    FILE* fp = fopen(fileName.c_str(), "r");
+    std::unique_ptr<FILE, decltype(&fclose)> fp(fopen(fileName.c_str(), "r"), &fclose);
 
-    if (fp == nullptr) {
+    if (!fp) {
         m_msg->write( QString::asprintf("File \"%s\" is not found\n", fileName.c_str()) );
         return false;
     }
@@ -268,13 +269,26 @@ bool Cnc::writeFromFile(const string& fileName) {
 
     list<string> ss;
 
-    string s = fileReadLine(fp);
-//    size_t n = s.size() + 1;
+    string s = fileReadLine(fp.get());
 
     while (!s.empty()) {
         ss.push_back(std::move(s));
-        s = fileReadLine(fp);
-//        n += s.size() + 1;
+        s = fileReadLine(fp.get());
+    }
+
+    fp.reset();
+
+    while (!s.empty()) {
+        ss.push_back(std::move(s));
+
+        string s = fileReadLine(fp.get());
+
+        while (!s.empty()) {
+            ss.push_back(std::move(s));
+            s = fileReadLine(fp.get());
+        }
+
+        fp.reset();
     }
 
     print_strings(m_msg, ss);
