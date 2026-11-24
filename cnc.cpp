@@ -74,7 +74,7 @@ bool Cnc::reset() {
     if (OK)
         OK = writeFeedback(
             CncParam::fb_ena,
-            CncParam::low_thld[0], CncParam::high_thld[1],
+            CncParam::low_thld[0], CncParam::high_thld[0],
             CncParam::rb_to, CncParam::rb_attempts, CncParam::rb_len, CncParam::rb_speed,
             CncParam::fb_acc, CncParam::fb_dec
         );
