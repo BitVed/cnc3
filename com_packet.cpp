@@ -17,6 +17,8 @@ void ComPacket::clear() {
     m_command = CMD_IDLE;
     m_valid = false;
     m_error = 0;
+    m_port_error = QSerialPort::NoError;
+    m_port_error_string.clear();
 }
 
 void ComPacket::append(uint8_t data) {

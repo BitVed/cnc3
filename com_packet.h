@@ -19,7 +19,7 @@ private:
     Command m_command = CMD_IDLE;
     bool m_valid = false;
     int m_error = 0;
-    QSerialPort::SerialPortError m_port_error;
+    QSerialPort::SerialPortError m_port_error = QSerialPort::NoError;
     QString m_port_error_string;
 
 public:
