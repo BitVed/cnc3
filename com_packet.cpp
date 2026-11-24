@@ -21,6 +21,12 @@ void ComPacket::clear() {
 
 void ComPacket::append(uint8_t data) {
     if (!m_valid) {
+        if (m_i >= m_data.size()) {
+            m_error = 4; // Invalid packet length
+            m_valid = true;
+            return;
+        }
+
         m_data[m_i++] = data;
 
         if (m_i == 1) {
@@ -33,10 +39,17 @@ void ComPacket::append(uint8_t data) {
            }
         } else if (m_i == 4) {
             m_addr = toUInt32Rev(m_data, 0) & 0x0fffFFFF;
-        } else if (m_i == 5) {
+        } else if (m_i == 5) {          
             m_size = m_data[4];
+
             if (m_size == 0)
                 m_size = ComPacket::MAX;
+
+            if (m_size > ComPacket::MAX) {
+                m_error = 4; // Invalid packet length
+                m_valid = true;
+                return;
+            }
         } else if ((m_command == Command::CMD_WRITE || m_command == Command::CMD_ERROR) && m_i == 9) {
             m_crc32 = toUInt32Rev(m_data, 5);
             uint32_t crc32_calc = crc32(m_data.data(), 5);
