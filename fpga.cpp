@@ -45,19 +45,19 @@ void FpgaBus::write_u16(uint16_t addr, uint16_t data) {
     m_com.write16(BAR + addr, data);
 }
 void FpgaBus::write_s16(uint16_t addr, int16_t data) {
-    m_com.write16(BAR + addr, *reinterpret_cast<uint16_t*>(data));
+    m_com.write16(BAR + addr, *reinterpret_cast<uint16_t*>(&data));
 }
 void FpgaBus::write_u32(uint16_t addr, uint32_t data) {
     m_com.write32(BAR + addr, data);
 }
 void FpgaBus::write_s32(uint16_t addr, int32_t data) {
-    m_com.write32(BAR + addr, *reinterpret_cast<uint32_t*>(data));
+    m_com.write32(BAR + addr, *reinterpret_cast<uint32_t*>(&data));
 }
 void FpgaBus::write_u64(uint16_t addr, uint64_t data) {
     m_com.write64(BAR + addr, data);
 }
 void FpgaBus::write_s64(uint16_t addr, int64_t data) {
-    m_com.write64(BAR + addr, *reinterpret_cast<uint64_t*>(data));
+    m_com.write64(BAR + addr, *reinterpret_cast<uint64_t*>(&data));
 }
 void FpgaBus::write_u48(uint16_t addr, uint64_t data) {
     m_com.write48(BAR + addr, data);
