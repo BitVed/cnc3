@@ -840,15 +840,25 @@ void FormRun::on_btnStart_clicked() {
 
                 par.cnc.imitEna(false);
 
-                if (m_runWidget->checkIdle->isChecked() || (m_btnBreak->isChecked() && m_btnPump->isChecked() && m_btnRoll->isChecked())) {
+                if  (m_runWidget->checkIdle->isChecked() ||
+                    (m_btnBreak->isChecked() && m_btnPump->isChecked() && m_btnRoll->isChecked()))
+                {
                     if (!m_runWidget->checkIdle->isChecked())
                         par.cnc.writeHoldEnable(true);
 
-                    par.cnc.runReq();
+                    if (!par.cnc.runReq()) {
+                        m_report.writeLine(tr("CNC start request failed"));
+                        updateButtons();
+                        return;
+                    }
+
                     if (m_timer) {
                         m_timer->clear();
                         m_timer->start();
                     }
+                } else {
+                    updateButtons();
+                    return;
                 }
             } else {
                 qDebug("form_run::on_btnStart_clicked>>Load G-code error");
@@ -880,13 +890,23 @@ void FormRun::on_btnStart_clicked() {
         break;
 
     case AppState::STATES::ST_PAUSE:
-        if (m_runWidget->checkIdle->isChecked() || (m_btnBreak->isChecked() && m_btnPump->isChecked() && m_btnRoll->isChecked())) {
+        if  (m_runWidget->checkIdle->isChecked() ||
+            (m_btnBreak->isChecked() && m_btnPump->isChecked() && m_btnRoll->isChecked()))
+        {
             if (!m_runWidget->checkIdle->isChecked())
                 par.cnc.writeHoldEnable(true);
 
-            par.cnc.runReq();
+            if (!par.cnc.runReq()) {
+                m_report.writeLine(tr("CNC start request failed"));
+                updateButtons();
+                return;
+            }
+
             if (m_timer)
                 m_timer->start();
+        } else {
+            updateButtons();
+            return;
         }
         break;
 
