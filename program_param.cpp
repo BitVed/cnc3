@@ -603,7 +603,7 @@ void AppState::next(AppState::BUTTON btn) {
         break;
     case STATES::ST_REV:
         if (btn == BUTTON::SIG_START)
-            m_state = STATES::ST_RUN;
+            m_state = STATES::ST_PAUSE;
         break;
     case STATES::ST_CANCEL:
         if (btn == BUTTON::SIG_REVERSE)

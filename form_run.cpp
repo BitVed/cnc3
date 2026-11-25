@@ -884,9 +884,12 @@ void FormRun::on_btnStart_clicked() {
 
     case AppState::STATES::ST_RUN:
     case AppState::STATES::ST_REV:
-        par.cnc.stopReq();
-        if (m_timer)
-            m_timer->stop();
+        if (!par.cnc.stopReq()) {
+            m_report.writeLine(tr("CNC stop request failed"));
+            updateButtons();
+            return;
+        }
+        if (m_timer) m_timer->stop();
         break;
 
     case AppState::STATES::ST_PAUSE:
