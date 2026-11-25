@@ -926,19 +926,30 @@ void FormRun::on_btnStart_clicked() {
 void FormRun::on_btnReverse_clicked() {
     blockSignals(true);
 
+    const auto guard = qScopeGuard([this]() {
+        blockSignals(false);
+    });
+
     try {
         if (!m_runWidget->checkIdle->isChecked())
             par.cnc.writeHoldEnable(true);
 
-        par.cnc.revReq();
+        if (!par.cnc.revReq()) {
+            m_report.writeLine(tr("CNC reverse request failed"));
+            updateButtons();
+            return;
+        }
+
         if (m_timer)
             m_timer->start();
 
         par.appState.next(AppState::BUTTON::SIG_REVERSE);
         updateButtons();
-    } catch (...) {}
-
-    blockSignals(false);
+    } catch (const std::exception& e) {
+        m_report.writeLine(tr("Error: ") + QString::fromUtf8(e.what()));
+    } catch (...) {
+        m_report.writeLine(tr("CNC reverse unknown exception"));
+    }
 }
 
 void FormRun::on_btnCancel_clicked() {
