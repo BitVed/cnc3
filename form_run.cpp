@@ -457,8 +457,8 @@ void FormRun::blockSignals(bool value) {
 
 using namespace auxItems;
 
-bool FormRun::loadGcode() {    
-    size_t wrsize, pa_size;
+bool FormRun::loadGcode() {
+    size_t wrsize = 0, pa_size = 0;
     m_info.clear();
 
     qDebug("Write frames");
@@ -468,19 +468,24 @@ bool FormRun::loadGcode() {
     bool OK = par.cnc.write(m_gframes, &wrsize, &pa_size);
 
     if (!OK) {
-        m_info +=   tr("G-code size is too big") + "\n";
-        m_info +=   tr("G-code size") + ": " + QString::number(wrsize) + " " + tr("bytes") + ". " +
-                    tr("CNC program array size") + ": " + QString::number(pa_size) + " " + tr("bytes");
+        QString error;
+        if (pa_size == 0)
+            error = tr("Cannot read CNC program array size");
+        else if (wrsize > pa_size)
+            error = tr("G-code size is too big");
+        else
+            error = tr("Load G-code error");
+
+        m_info += error + "\n";
+        m_info += tr("G-code size") + ": " + QString::number(wrsize) + " " + tr("bytes");
+
+        if (pa_size != 0)
+            m_info += ". " + tr("CNC program array size") + ": " + QString::number(pa_size) + " " + tr("bytes");
 
         m_report.write(m_info);
         m_info += "\n";
 
-        QMessageBox::critical(
-            this,
-            tr("G-code size is too big"),
-            tr("G-code size") + ": " + QString::number(wrsize) + " " + tr("bytes") + ". " + tr("CNC program array size") + ": " + QString::number(pa_size) + " " + tr("bytes")
-        );
-
+        QMessageBox::critical(this, error, m_info);
         return false;
     }
 

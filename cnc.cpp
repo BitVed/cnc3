@@ -255,7 +255,7 @@ vector<uint8_t> Cnc::readProgArrayBurst() {
 string fileReadLine(FILE* fp) {
     string s;
 
-    if (!fp || ferror(fp))
+    if (!fp || feof(fp) || ferror(fp))
         return s;
 
     s.reserve(256);
@@ -356,8 +356,10 @@ bool Cnc::write(const std::list<std::string>& frames, size_t* p_wrsize, size_t* 
 
     qDebug("cnc::write>>G-code size: %d bytes", (int)wrsize);
 
-    uint32_t pa_size;
+    if (p_pa_size)
+        *p_pa_size = 0;
 
+    uint32_t pa_size = 0;
     if (!m_com.read32(ADDR::PA_SIZE, pa_size))
         return false;
 
