@@ -779,7 +779,8 @@ void FormRun::updateButtons() {
     case AppState::STATES::ST_CANCEL:
         m_runWidget->setButtonsText({"", tr("Shortcut"), "Reset"},
                                   {statusStartStop, tr("Fast return to start position"), tr("Reset CNC")});
-        m_runWidget->setButtonsEnabled(0,1,1,1);
+        // m_runWidget->setButtonsEnabled(0,1,1,1); // TODO: Check new MCU firmware. There is no Shortcut
+        m_runWidget->setButtonsEnabled(0,0,1,1);
         m_btnHome->setEnabled(false);
         break;
     case AppState::STATES::ST_SHORT_REV:
@@ -925,6 +926,9 @@ void FormRun::on_btnStart_clicked() {
 }
 
 void FormRun::on_btnReverse_clicked() {
+    if (par.appState.state() != AppState::STATES::ST_PAUSE)
+        return;
+
     blockSignals(true);
 
     const auto guard = qScopeGuard([this]() {
