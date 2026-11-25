@@ -15,6 +15,7 @@ public:
     void start();
     void stop();
     qint64 elapsed();
+    void restore(qint64 elapsed_ms);
 };
 
 #endif // START_STOP_ELAPSED_TIMER_H

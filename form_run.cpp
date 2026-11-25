@@ -595,8 +595,29 @@ void FormRun::init(bool recovery) {
                     par.cnc.imitEna(false);
 
                     if (m_timer) {
-//                        timer->clear();                        
-                        m_timer->start();
+                        const CncContext& ctx = par.cncContext;
+
+                        const fpoint_t bot_pos = ctx.isEncoderMode()
+                                                     ? fpoint_t(ctx.encoderX() / CncParam::scaleEncX, ctx.encoderY() / CncParam::scaleEncY)
+                                                     : fpoint_t(ctx.x() / CncParam::scaleX, ctx.y() / CncParam::scaleY);
+
+                        const fpoint_t top_pos(ctx.u() / CncParam::scaleU, ctx.v() / CncParam::scaleV);
+
+                        onFrameChanged(ctx.frameNum(), bot_pos, top_pos);
+
+                        const double length = par.workContours.botLength();
+                        const double speed = ctx.speed(); // mm/min
+
+                        qint64 elapsed_ms = 0;
+                        if (length > 0.0 && speed > 0.0 && std::isfinite(length) && std::isfinite(speed)) {
+                            const double estimate = length / speed * 60000.0;
+
+                            if (std::isfinite(estimate) && estimate < static_cast<double>(std::numeric_limits<qint64>::max()))
+                                elapsed_ms = static_cast<qint64>(estimate);
+                        }
+
+                        m_timer->restore(elapsed_ms);
+                        m_runWidget->setElapsedTime(elapsed_ms);
                     }
 
                     par.cncContext.setValid(false);

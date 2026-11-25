@@ -32,3 +32,8 @@ void StartStopElapsedTimer::stop() {
 qint64 StartStopElapsedTimer::elapsed() {
     return timer && timer->isValid() ? ms + timer->elapsed() : ms;
 }
+
+void StartStopElapsedTimer::restore(qint64 elapsed_ms) {
+    clear();
+    ms = elapsed_ms > 0 ? elapsed_ms : 0;
+}
