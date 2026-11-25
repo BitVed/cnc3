@@ -6,6 +6,9 @@
 #include <QRegularExpression>
 #include <QScopeGuard>
 
+#include <cmath>
+#include <limits>
+
 using namespace std;
 
 FormRun::FormRun(ProgramParam& par, QWidget *parent) :
@@ -1073,17 +1076,22 @@ void FormRun::readCncContext() {
                     m_remain_tmr = 0;
 
                     if (!ctx.reverse()) {
-                        double length = par.workContours.botLength();
-                        double speed = ms > 0 ? length / (double)ms : 0;
-                        double remain_length = m_full_length > 0 ? m_full_length - length : 0;
-                        double remain_time = remain_length / speed;
+                        const double length = par.workContours.botLength();
+                        const double speed = ms > 0 ? length / static_cast<double>(ms) : 0;
+                        double remain_length = m_full_length > length ? m_full_length - length : 0;
 
-                        if (remain_time < 0)
-                            remain_time = 0;
+                        qint64 remain_time = 0;
+                        if (speed > 0 && remain_length > 0) {
+                            const double estimate = remain_length / speed;
 
-                        m_runWidget->setRemainTime(static_cast<qint64>(remain_time));
+                            if (std::isfinite(estimate) && estimate < static_cast<double>(std::numeric_limits<qint64>::max()))
+                                remain_time = static_cast<qint64>(estimate);
+                        }
 
-                        qDebug("Remain: %0.3f mm, %0.3f mm, %d ms, %d ms", m_full_length, length, (int)ms, (int)remain_time);
+                        m_runWidget->setRemainTime(remain_time);
+
+                        qDebug("Remain: %0.3f mm, %0.3f mm, %lld ms, %lld ms",
+                               m_full_length, length, static_cast<long long>(ms), static_cast<long long>(remain_time));
                     } else {
                         m_runWidget->setRemainTime(0);
                     }
