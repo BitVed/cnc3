@@ -684,7 +684,7 @@ double ContourList::botLength() const { // todo: check a formula
 
     if (m_botValid && m_cur_ctr >= 0 && size_t(m_cur_ctr) < m_contours.size() && m_cur_seg >= 0 && size_t(m_cur_seg) < m_contours[size_t(m_cur_ctr)].count()) {
         if (m_cur_ctr > 0) {
-            for (size_t i = 0; i < size_t(m_cur_ctr) - 1; i++)
+            for (size_t i = 0; i < size_t(m_cur_ctr); i++)
                 sum += m_contours[i].lengthBot();
         }
 
