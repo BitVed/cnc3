@@ -852,9 +852,13 @@ void FormRun::on_btnStart_clicked() {
                 }
             } else {
                 qDebug("form_run::on_btnStart_clicked>>Load G-code error");
-                m_info.chop(1); // clear \n
+
+                m_info.chop(1);
                 m_info += " " + tr("Load G-code error") + "\n";
                 m_runWidget->txtMsg->setText(m_info);
+
+                updateButtons();
+                return;
             }
         } catch (string& s) {
             m_report.writeLine(s);
