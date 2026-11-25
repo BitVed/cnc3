@@ -18,6 +18,17 @@
 using namespace std;
 using namespace auxItems;
 
+namespace {
+    struct FileCloser {
+        void operator()(FILE* fp) const noexcept {
+            if (fp)
+                std::fclose(fp);
+        }
+    };
+
+    using FilePtr = std::unique_ptr<FILE, FileCloser>;
+}
+
 CncCom Cnc::m_com;
 
 Cnc::Cnc(QObject* parent) : QObject(parent), m_msg(nullptr), m_fpga(m_com) {
@@ -217,25 +228,49 @@ vector<uint8_t> Cnc::readProgArrayBurst() {
     return bytes;
 }
 
+// string fileReadLine(FILE* fp) {
+//     string s;
+//     s.resize(256);
+//     s.clear();
+
+//     while (!feof(fp)) {
+//         int ch = fgetc(fp);
+
+//         if (ferror(fp)) {
+//             qDebug("Read file error\n");
+//             s.clear();
+//             break;
+//         }
+//         else {
+//             if (ch == '\n' || ch == '\0')
+//                 break;
+//             else
+//                 s += static_cast<char>(ch);
+//         }
+//     }
+
+//     return s;
+// }
+
 string fileReadLine(FILE* fp) {
     string s;
-    s.resize(256);
-    s.clear();
 
-    while (!feof(fp)) {
-        int ch = fgetc(fp);
+    if (!fp || ferror(fp))
+        return s;
 
-        if (ferror(fp)) {
-            qDebug("Read file error\n");
-            s.clear();
+    s.reserve(256);
+
+    int ch;
+    while ((ch = fgetc(fp)) != EOF) {
+        if (ch == '\n' || ch == '\0')
             break;
-        }
-        else {
-            if (ch == '\n' || ch == '\0')
-                break;
-            else
-                s += static_cast<char>(ch);
-        }
+
+        s += static_cast<char>(ch);
+    }
+
+    if (ferror(fp)) {
+        qDebug("Read file error");
+        s.clear();
     }
 
     return s;
@@ -259,13 +294,14 @@ string textReadLine(const string& text,  string::const_iterator& it) {
 }
 
 bool Cnc::writeFromFile(const string& fileName) {
-    std::unique_ptr<FILE, decltype(&fclose)> fp(fopen(fileName.c_str(), "r"), &fclose);
+    FilePtr fp(fopen(fileName.c_str(), "r"));
 
     if (!fp) {
-        m_msg->write( QString::asprintf("File \"%s\" is not found\n", fileName.c_str()) );
+        if (m_msg) m_msg->write(QString::asprintf("File \"%s\" is not found\n", fileName.c_str()));
         return false;
     }
-    m_msg->write( QString::asprintf("Read G-code from file \"%s\"\n", fileName.c_str()) );
+
+    if (m_msg) m_msg->write(QString::asprintf("Read G-code from file \"%s\"\n", fileName.c_str()));
 
     list<string> ss;
 
@@ -276,26 +312,18 @@ bool Cnc::writeFromFile(const string& fileName) {
         s = fileReadLine(fp.get());
     }
 
-    fp.reset();
-
-    while (!s.empty()) {
-        ss.push_back(std::move(s));
-
-        string s = fileReadLine(fp.get());
-
-        while (!s.empty()) {
-            ss.push_back(std::move(s));
-            s = fileReadLine(fp.get());
-        }
-
-        fp.reset();
+    if (ferror(fp.get())) {
+        qDebug("Read G-code file error");
+        return false;
     }
+
+    fp.reset();
 
     print_strings(m_msg, ss);
 
     vector<uint8_t> data;
-    for (list<string>::const_iterator it = ss.begin(); it != ss.end(); ++it)
-        push_back_range(data, *it);
+    for (const auto& frame : ss)
+        push_back_range(data, frame);
 
     uint32_t pa_size;
     if (!m_com.read32(ADDR::PA_SIZE, pa_size))
@@ -674,22 +702,29 @@ void Cnc::saveImitData(string fileName) {
         }
 
     vector<int32_t> v;
-
     for (size_t i = 0; i < min(X.size(), Y.size()); i++) {
         v.push_back(X[i]);
         v.push_back(Y[i]);
     }
 
-    FILE* fp = fopen(fileName.c_str(), "wb");
+    FilePtr fp(fopen(fileName.c_str(), "wb"));
 
-    if (fp == nullptr) {
-        qDebug("File \"%s\" not found\n", fileName.c_str());
+    if (!fp) {
+        qDebug("Cannot open file \"%s\"", fileName.c_str());
         return;
     }
 
-    fwrite(v.data(), sizeof(int32_t), v.size(), fp);
-    fflush(fp);
-    m_msg->writeLine("Imitation data saved to file \"" + fileName + "\"");
+    if (fwrite(v.data(), sizeof(int32_t), v.size(), fp.get()) != v.size()) {
+        qDebug("File write error");
+        return;
+    }
+
+    if (fclose(fp.release()) != 0) {
+        qDebug("File close error");
+        return;
+    }
+
+    if (m_msg) m_msg->writeLine("Imitation data saved to file \"" + fileName + "\"");
 }
 
 string Cnc::versionDate() {
