@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QScopeGuard>
 
 using namespace std;
 
@@ -775,6 +776,10 @@ void FormRun::updateButtons() {
 void FormRun::on_btnStart_clicked() {
     blockSignals(true);
 
+    const auto guard = qScopeGuard([this]() {
+        blockSignals(false);
+    });
+
     switch (par.appState.state()) {
     case AppState::STATES::ST_NONE:
         _init();
@@ -865,8 +870,6 @@ void FormRun::on_btnStart_clicked() {
     // todo: more reactions
     par.appState.next(AppState::BUTTON::SIG_START);
     updateButtons();
-
-    blockSignals(false);
 }
 
 void FormRun::on_btnReverse_clicked() {
