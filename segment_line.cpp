@@ -237,6 +237,9 @@ double SegmentLine::length(const fpoint_t& pt) const {
     double BP2 = lengthSquare(m_B, pt);
 
     double AB = sqrt(AB2);
+    if (AB == 0.0)
+        return 0.0;
+
     double AN = (AB2 + AP2 - BP2) / (2 * AB);
 
     if (AN <= 0)
@@ -253,6 +256,10 @@ double SegmentLine::distance(const fpoint_t& pt) const {
     double BP2 = lengthSquare(m_B, pt);
 
     double AB = sqrt(AB2);
+
+    if (AB == 0.0)
+        return sqrt(AP2);
+
     double AN = (AB2 + AP2 - BP2) / (2 * AB);
     double AN2 = AN * AN;
 
