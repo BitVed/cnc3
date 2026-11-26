@@ -662,32 +662,7 @@ bool ProgramParam::loadComb(comb_t& comb) {
     comb.roll_vel_idle  = loadUInt(settings,    "roll_vel_idle", cnc_param::ROLL_MIN, cnc_param::ROLL_MAX, cnc_param::ROLL_MIN, OK);
 
     comb.slots_num      = loadUInt(settings,    "slots_num", 1, 1000, 20, OK);
-#ifdef STONE
 
-    bool ProgramParam::setPultRecoveryBlocked(bool value)
-    {
-        QSettings settings(org, app);
-
-        settings.setValue("pultRecoveryBlocked", value);
-        settings.sync();
-
-        return settings.status() == QSettings::NoError;
-    }
-
-    bool ProgramParam::pultRecoveryBlocked()
-    {
-        QSettings settings(org, app);
-        settings.sync();
-
-        if (settings.status() != QSettings::NoError)
-            return true;
-
-        return settings.value(
-                           "pultRecoveryBlocked", false
-                           ).toBool();
-    }
-
-#endif
     comb.pause          = loadUInt(settings,    "pause", 0, 600, 30, OK);
     if (comb.pause == 0)
         comb.pause_ena  = false;
