@@ -9,12 +9,12 @@
 SlicingWidget::SlicingWidget(ProgramParam& par, QWidget *parent) : QWidget(parent), par(par) {
     labelTitle = new QLabel(R"(<h1>)" + tr("Slicing") + R"(<br></h1>)");
     labelWireD = new QLabel(tr("Wire Diameter"));
-    labelWidth = new QLabel(tr("Workpiece Thickness"));
-    labelSpacing = new QLabel(tr("Spacing"));
+    labelWidth = new QLabel(tr("Stock Width"));
+    labelSpacing = new QLabel(tr("Clearance"));
     labelStep = new QLabel(tr("Slice Thickness") + ", " + tr("signed value"));
-    labelStepNum = new QLabel(tr("Slices Number"));
-    labelSpeedSections = new QLabel(tr("Number of sections in the speed profile"));
-    labelSpeedAvg = new QLabel(tr("Cutting Speed"));
+    labelStepNum = new QLabel(tr("Number of Slices"));
+    labelSpeedSections = new QLabel(tr("Feed Sections"));
+    labelSpeedAvg = new QLabel(tr("Feed Rate"));
 
 //    labels = {labelWireD, labelWidth, labelSpacing, labelSlicingStep, labelStepNum, labelSectionsNum, labelSpeedAvg};
 
@@ -77,9 +77,9 @@ SlicingWidget::SlicingWidget(ProgramParam& par, QWidget *parent) : QWidget(paren
     numSpeedSections->setAccelerated(true);
     numSpeedSections->setStepType(QAbstractSpinBox::AdaptiveDecimalStepType);
 
-    groupProfile = new QGroupBox(tr("Workpiece Profile"));
-    radioRect = new QRadioButton(tr("Rectangle Profile"));
-    radioCircle = new QRadioButton(tr("Round Profile"));
+    groupProfile = new QGroupBox(tr("Profile"));
+    radioRect = new QRadioButton(tr("Rectangular"));
+    radioCircle = new QRadioButton(tr("Round"));
     {
         QVBoxLayout* vbox = new QVBoxLayout;
         vbox->addWidget(radioRect);
@@ -93,7 +93,7 @@ SlicingWidget::SlicingWidget(ProgramParam& par, QWidget *parent) : QWidget(paren
     numPause->setRange(1, 600);
     numPause->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    groupAxis = new QGroupBox(tr("Axis"));
+    groupAxis = new QGroupBox(tr("Slice Axis"));
     radioX = new QRadioButton("X");
     radioY = new QRadioButton("Y");
     {
@@ -160,14 +160,14 @@ SlicingWidget::SlicingWidget(ProgramParam& par, QWidget *parent) : QWidget(paren
     connect(radioRect, &QRadioButton::clicked, this, [&]() {
         labelSpeedSections->setEnabled(false);
         numSpeedSections->setEnabled(false);
-        labelWidth->setText(tr("Workpiece Thickness"));
+        labelWidth->setText(tr("Stock Width"));
         labelSpeedAvg->setText(tr("Cutting Speed"));
     });
     connect(radioCircle, &QRadioButton::clicked, this, [&]() {
         labelSpeedSections->setEnabled(true);
         numSpeedSections->setEnabled(true);
-        labelWidth->setText(tr("Workpiece Diameter"));
-        labelSpeedAvg->setText(tr("Average Speed"));
+        labelWidth->setText(tr("Stock Diameter"));
+        labelSpeedAvg->setText(tr("Average Feed"));
     });
 
     connect(btnUndo, &QPushButton::clicked, this, &SlicingWidget::onUndo);

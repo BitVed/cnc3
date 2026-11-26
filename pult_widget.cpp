@@ -543,7 +543,7 @@ void PultWidget::createMmSteps() {
 }
 
 void PultWidget::createSpeed() {
-    labelSpeed = new QLabel(tr("Speed") + ": ");
+    labelSpeed = new QLabel(tr("Feed") + ": ");
 
     numSpeed = new QDoubleSpinBox;
     numSpeed->setRange(0, 100);

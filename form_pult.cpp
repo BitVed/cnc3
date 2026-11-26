@@ -80,7 +80,7 @@ void FormPult::addButtons() {
     btnHelp->setStatusTip(tr("Open Help") + "   F1");
     btnHelp->setShortcut(QKeySequence::HelpContents);
 
-    btnBreak = new QPushButton(tr("Break"));
+    btnBreak = new QPushButton(tr("WB Ctrl"));
     btnBreak->setCheckable(true);
     btnBreak->setStatusTip(tr("Wire break control on/off"));
 
@@ -88,15 +88,15 @@ void FormPult::addButtons() {
     btnPump->setCheckable(true);
     btnPump->setStatusTip(tr("Pump on/off"));
 
-    btnRoll = new QPushButton(tr("Roll"));
+    btnRoll = new QPushButton(tr("Wire"));
     btnRoll->setCheckable(true);
-    btnRoll->setStatusTip(tr("Wire roll on/off"));
+    btnRoll->setStatusTip(tr("Wire drive on/off"));
 
     btnRollVelDec = new QPushButton(tr("DEC"));
-    btnRollVelDec->setStatusTip(tr("Roll velocity decrement"));
+    btnRollVelDec->setStatusTip(tr("Decrease wire speed"));
 
     btnRollVelInc = new QPushButton(tr("INC"));
-    btnRollVelInc->setStatusTip(tr("Roll velocity increment"));
+    btnRollVelInc->setStatusTip(tr("Increase wire speed"));
 
     btnHighVolt = new QPushButton;
     btnHighVolt->setCheckable(true);
@@ -258,7 +258,7 @@ void FormPult::createButtonLayout() {
 
     nums = {numRollVel, numCurrent, numWidth, numRatio};
 
-    labelRoll = new QLabel(tr("Roll Velocity") + ": ");
+    labelRoll = new QLabel(tr("Wire Speed") + ": ");
     labelRoll->setBuddy(numRollVel);
     labelWidth = new QLabel(tr("Width") + ": ");
     labelWidth->setBuddy(numWidth);
@@ -376,10 +376,10 @@ void FormPult::init() {
 void FormPult::_init() {
 #ifdef STONE
     controlsEnable(false, true);
+    btnHome->setEnabled(true);
 #else
     controlsEnable(true, true);
 #endif
-
     m_running_reg = false;
 }
 
@@ -588,6 +588,9 @@ void FormPult::readCutState() {
 #ifdef STONE
             m_stoneMoving = false;
             controlsEnable(false, true);
+
+            if (!m_stoneActive)
+                btnHome->setEnabled(true);
 #else
             controlsEnable(true, true);
             m_running_reg = false;

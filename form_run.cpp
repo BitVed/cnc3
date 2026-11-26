@@ -99,7 +99,7 @@ void FormRun::addButtons() {
     m_btnHelp->setStatusTip(tr("Open Help") + "   F1");
     m_btnHelp->setShortcut(QKeySequence::HelpContents);
 
-    m_btnBreak = new QPushButton(tr("Break"));
+    m_btnBreak = new QPushButton(tr("WB Ctrl"));
     m_btnBreak->setCheckable(true);
     m_btnBreak->setStatusTip(tr("Wire break control on/off"));
     QPalette palButton = m_btnBreak->palette();
@@ -110,15 +110,15 @@ void FormRun::addButtons() {
     m_btnPump->setCheckable(true);
     m_btnPump->setStatusTip(tr("Pump on/off"));
 
-    m_btnRoll = new QPushButton(tr("Roll"));
+    m_btnRoll = new QPushButton(tr("Wire"));
     m_btnRoll->setCheckable(true);
-    m_btnRoll->setStatusTip(tr("Wire roll on/off"));
+    m_btnRoll->setStatusTip(tr("Wire drive on/off"));
 
     m_btnRollVelDec = new QPushButton(tr("DEC"));
-    m_btnRollVelDec->setStatusTip(tr("Roll velocity decrement"));
+    m_btnRollVelDec->setStatusTip(tr("Decrease wire speed"));
 
     m_btnRollVelInc = new QPushButton(tr("INC"));
-    m_btnRollVelInc->setStatusTip(tr("Roll velocity increment"));
+    m_btnRollVelInc->setStatusTip(tr("Increase wire speed"));
 
     m_btnHighVolt = new QPushButton;
 #ifndef STONE
@@ -304,7 +304,7 @@ void FormRun::createSpinBoxes() {
 
     m_numBoxes = {m_numRollVel, m_numWidth, m_numRatio, m_numCurrent};
 
-    m_labelRoll = new QLabel(tr("Roll Velocity") + ": ");
+    m_labelRoll = new QLabel(tr("Wire Speed") + ": ");
     m_labelRoll->setBuddy(m_numRollVel);
     m_labelWidth = new QLabel(tr("Width") + ": ");
     m_labelWidth->setBuddy(m_numWidth);

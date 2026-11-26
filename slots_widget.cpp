@@ -11,13 +11,13 @@
 SlotsWidget::SlotsWidget(ProgramParam& par, QWidget *parent) : QWidget(parent), par(par) {
     labelTitle = new QLabel(R"(<h1>)" + tr("Slots") + R"(<br></h1>)");
     labelWireD = new QLabel(tr("Wire Diameter"));
-    labelDepth = new QLabel(tr("Slots Depth") + ", " + tr("signed value"));
-    labelStep = new QLabel(tr("Step") + ", " + tr("signed value"));
-    labelSlotsNum = new QLabel(tr("Slots Number"));
-    labelSpeed = new QLabel(tr("Cutting Speed"));
-    labelRollVel = new QLabel(tr("Roll Velocity"));
-    labelIdleSpeed = new QLabel(tr("Idle Speed"));
-    labelIdleRollVel = new QLabel(tr("Idle Roll Velocity"));
+    labelDepth = new QLabel(tr("Slot Depth") + ", " + tr("signed value"));
+    labelStep = new QLabel(tr("Part Thickness") + ", " + tr("signed value"));
+    labelSlotsNum = new QLabel(tr("Number of slots"));
+    labelSpeed = new QLabel(tr("Cut Feed"));
+    labelRollVel = new QLabel(tr("Cut Wire Speed"));
+    labelIdleSpeed = new QLabel(tr("Return Feed"));
+    labelIdleRollVel = new QLabel(tr("Return Wire Speed"));
 
     fnumWireD = new QDoubleSpinBox;
     labelWireD->setBuddy(fnumWireD);
@@ -84,7 +84,7 @@ SlotsWidget::SlotsWidget(ProgramParam& par, QWidget *parent) : QWidget(parent), 
     numPause->setRange(1, 600);
     numPause->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
-    groupAxis = new QGroupBox(tr("Axis"));
+    groupAxis = new QGroupBox(tr("Slot Axis"));
     radioX = new QRadioButton("X");
     radioY = new QRadioButton("Y");
     {

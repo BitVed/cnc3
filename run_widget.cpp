@@ -49,14 +49,14 @@ void RunWidget::createButtons() {
     setButtonsEnabled(1, 0, 0, 1);
     setButtonsText({tr("Start"), tr("Back"), tr("Cancel")}, {tr("Start cutting"), tr("Go to back"), tr("Cancel program")});
 
-    labelSpeed = new QLabel(tr("Speed") + ": ");
+    labelSpeed = new QLabel(tr("Feed") + ": ");
 
     numSpeed = new QDoubleSpinBox;
     numSpeed->setAccelerated(true);
     numSpeed->setStepType(QAbstractSpinBox::AdaptiveDecimalStepType);
 
     btnSpeed = new QPushButton(tr("Enter"));
-    btnSpeed->setStatusTip(tr("Enter speed"));
+    btnSpeed->setStatusTip(tr("Enter feed rate"));
 
     QHBoxLayout* hSpeed = new QHBoxLayout();
     hSpeed->addWidget(labelSpeed);
@@ -67,7 +67,7 @@ void RunWidget::createButtons() {
     speedMMM = new QRadioButton(tr("mm/min"));
     speedUMS = new QRadioButton(tr("um/sec"));
 
-    checkIdle = new QCheckBox(tr("Idle run"));
+    checkIdle = new QCheckBox(tr("Dry run"));
 //    checkIdle->setCheckState(Qt::CheckState::PartiallyChecked); // ?
 
     groupSpeed = new QGroupBox;
