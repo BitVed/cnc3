@@ -1,6 +1,8 @@
 #include "form_pult.h"
 #include <QDebug>
 #include <QTimer>
+#include <QSignalBlocker>
+#include <stdexcept>
 
 using namespace std;
 
@@ -318,7 +320,19 @@ void FormPult::createButtonLayout() {
 //        par.cnc.writeSpeed(speed);
 //    });
 
+#ifdef STONE
+    pultWidget->numSpeed->setKeyboardTracking(false);
+
+    connect(pultWidget->numSpeed, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [this](double) {
+            onStoneSpeedChanged();
+    });
+#endif
+
     connect(pultWidget->speedMMM, &QRadioButton::clicked, this, [&]() {
+#ifdef STONE
+        const QSignalBlocker blocker(pultWidget->numSpeed);
+#endif
+
         if (wireSpeedMode != WireSpeed::Mode::MMM) {
             WireSpeed speed(pultWidget->numSpeed->value(), wireSpeedMode);
             wireSpeedMode = WireSpeed::Mode::MMM;
@@ -330,6 +344,10 @@ void FormPult::createButtonLayout() {
         }
     });
     connect(pultWidget->speedUMS, &QRadioButton::clicked, this, [&]() {
+#ifdef STONE
+        const QSignalBlocker blocker(pultWidget->numSpeed);
+#endif
+
         if (wireSpeedMode != WireSpeed::Mode::UMS) {
             WireSpeed speed(pultWidget->numSpeed->value(), wireSpeedMode);
             wireSpeedMode = WireSpeed::Mode::UMS;
@@ -356,11 +374,13 @@ void FormPult::init() {
 }
 
 void FormPult::_init() {
+#ifdef STONE
+    controlsEnable(false, true);
+#else
     controlsEnable(true, true);
-    m_running_reg = false;
+#endif
 
-//    if (!par.cnc.isOpen())
-//        pultWidget->txtMsg->insertPlainText("Error: No CNC connection\n");
+    m_running_reg = false;
 }
 
 void FormPult::on_btnHome_clicked() {
@@ -369,6 +389,7 @@ void FormPult::on_btnHome_clicked() {
     emit homePageClicked();
 }
 
+#ifndef STONE
 void FormPult::on_btnMove_clicked(bool dir) {
     int32_t nx = pultWidget->getMoveN(0);
     int32_t ny = pultWidget->getMoveN(1);
@@ -386,6 +407,7 @@ void FormPult::on_btnMove_clicked(bool dir) {
         par.cnc.directMoveOn(nx, pultWidget->scale(0), ny, pultWidget->scale(1), nu, pultWidget->scale(2), nv, pultWidget->scale(3), pultWidget->speed());
     } catch (...) {}
 }
+#endif
 
 void FormPult::on_btnSet_clicked() {
     int32_t nx = pultWidget->getSetN(0);
@@ -401,6 +423,7 @@ void FormPult::on_btnSet_clicked() {
     } catch (...) {}
 }
 
+#ifndef STONE
 void FormPult::on_btnCancel_clicked() {
     m_running_reg = false;
 
@@ -408,6 +431,7 @@ void FormPult::on_btnCancel_clicked() {
         par.cnc.cancelReq();
     } catch (...) {}
 }
+#endif
 
 void FormPult::startCncReader() {
     if (par.cnc.isOpen()) {
@@ -448,6 +472,11 @@ void FormPult::readCutState() {
         try {
             CncContext ctx = par.cnc.readCncContext();
 //            qDebug() << "CNC reader: " + QString(cut_state.toString().c_str());
+
+#ifdef STONE
+            if (!ctx.valid() || !ctx.isInit())
+                throw std::runtime_error("Invalid CNC context");
+#endif
 
             pultWidget->setMotorView(0, ctx.x());
             pultWidget->setMotorView(1, ctx.y());
@@ -534,6 +563,9 @@ void FormPult::readCutState() {
 //                               );
 //            }
 
+#ifdef STONE
+            updateStoneMotion(ctx);
+#else
             bool m_running = ctx.isWork();
 
             if (m_running_reg && !m_running)
@@ -551,9 +583,15 @@ void FormPult::readCutState() {
                 controlsEnable(true);
                 m_running_reg = false;
             }
+#endif
         } catch (...) {
+#ifdef STONE
+            m_stoneMoving = false;
+            controlsEnable(false, true);
+#else
             controlsEnable(true, true);
             m_running_reg = false;
+#endif
         }
 
         blockSignals(false);

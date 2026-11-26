@@ -44,6 +44,18 @@ class FormPult : public QWidget {
     bool cutStateAbortReq = false;
     WireSpeed::Mode wireSpeedMode;
 
+#ifdef STONE
+    bool m_stoneActive = false;
+    bool m_stoneStartPending = false;
+    bool m_stoneMoving = false;
+
+    int32_t m_stoneTargetX = 0;
+    int32_t m_stoneTargetY = 0;
+
+    void onStoneSpeedChanged();
+    void updateStoneMotion(const CncContext& ctx);
+#endif
+
     void addButtons();
     void createButtonLayout();
 

@@ -1,7 +1,7 @@
 #ifndef CONSTRAINTS_H
 #define CONSTRAINTS_H
 
-#define APP_VER ("3.1.1.3b")
+#define APP_VER ("3.1.1.4b")
 /*
     0.2.2.1 изменен информационный пакет ЧПУ
     0.2.2.2 попытка перевернуть оси в QWT
@@ -31,9 +31,10 @@
     3.1.1.1 changed M codes, pass panel, modes table
     3.1.1.2 updated help, supported DXF lwpolyline, layers, enable dark theme for plot only, rename "drum" to "roll", work with UV in countor editor
     3.1.1.3 Update the Contour editor, added contour multiplexor, select contours on plot, move segments, accelaration
+    3.1.1.4 Added special pult for stone cutting with speed control. AI review
 */
 
-//#define STONE
+#define STONE
 //#define TEST_PANEL
 #ifndef STONE
     #define SHOW_ENCODERS

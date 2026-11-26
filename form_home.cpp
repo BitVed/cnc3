@@ -249,6 +249,12 @@ void FormHome::createButtons() {
     connect(btnCenter, &QPushButton::clicked, this, [&]() { emit centerPageClicked(); });
 
     connect(btnRec, &QPushButton::clicked, this, [&]() {
+#ifdef STONE
+        if (ProgramParam::pultRecoveryBlocked()) {
+            QMessageBox::information(this, tr("Recovery"), tr("Recovery is not available after manual movement."));
+            return;
+        }
+#endif
         if (btnRec->signalsBlocked())
             return;
 

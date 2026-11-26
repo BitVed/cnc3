@@ -69,6 +69,7 @@ SOURCES += \
     form_mult.cpp \
     form_passes_stone.cpp \
     form_pult.cpp \
+    form_pult_stone.cpp \
     form_settings.cpp \
     fpga.cpp \
     frect_t.cpp \

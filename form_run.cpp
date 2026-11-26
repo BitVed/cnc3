@@ -846,12 +846,25 @@ void FormRun::on_btnStart_clicked() {
                 {
                     if (!m_runWidget->checkIdle->isChecked())
                         par.cnc.writeHoldEnable(true);
-
+#ifdef STONE
+                    if (ProgramParam::pultRecoveryBlocked()) {
+                        if (!par.cnc.clearBackup()) {
+                            m_report.writeLine(tr("Cannot clear previous CNC backup"));
+                            updateButtons();
+                            return;
+                        }
+                    }
+#endif
                     if (!par.cnc.runReq()) {
                         m_report.writeLine(tr("CNC start request failed"));
                         updateButtons();
                         return;
                     }
+
+#ifdef STONE
+                    if (!ProgramParam::setPultRecoveryBlocked(false))
+                        m_report.writeLine(tr("Cannot enable CNC recovery"));
+#endif
 
                     if (m_timer) {
                         m_timer->clear();

@@ -21,6 +21,10 @@ private:
     STATES m_state {STATES::ST_NONE};
     bool m_idle_run {false}; // Idle run
 public:
+#ifdef STONE
+    static bool setPultRecoveryBlocked(bool value);
+    static bool pultRecoveryBlocked();
+#endif
     inline STATES state() const { return m_state; }
     inline bool isIdle() const { return m_state <= STATES::ST_IDLE; }
     inline bool isWork() const { return m_state > STATES::ST_IDLE && m_state < STATES::ST_ERROR; }
